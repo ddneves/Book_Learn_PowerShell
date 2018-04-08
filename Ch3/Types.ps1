@@ -8,11 +8,11 @@ Get-Member -InputObject "String"
 
 # List of the commonly used types:
 # sequence of UTF-16 code units.
-[String] sequence of UTF-16 code units.
+[String] 
 # character as a UTF-16 code unit.
-[Char] A Unicode 16-bit character
+[Char]
 # 8-bit unsigned integer.
-[Byte] An 8-bit unsigned character
+[Byte] 
 
 # 32-bit signed integer
 [Int] 
@@ -29,7 +29,7 @@ Get-Member -InputObject "String"
 [Bool] 
 
 #.NET class, which holds the combination of date and time
-[DateTime] Date and Time
+[DateTime]
 
 # A XML-Object - can be greatly used to store and load configuratio data.
 [XML] 
@@ -38,10 +38,4 @@ Get-Member -InputObject "String"
 [Array] 
  
 # Hashtable is an associative array, which maps keys to values.
-[Hashtable] Hashtable object
-
-#region Generics
-
-[System.Collections.Generic.Dictionary]
-
-#endregion
+[Hashtable]

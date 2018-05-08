@@ -96,12 +96,28 @@ namespace MyNamespace // Your own namespace. Can also be nested in System by cal
 
 # Instanciate our new object - this is what your cmdlets usually do internally
 $logObject = New-Object -TypeName MyNamespace.LogObject
+$logObject.GetType().FullName # Eventhough we did not implement it, it is there
 $logObject # The date is preset
 $logObject | Get-Member # LogCreated is read-only, LogName and LogPath are writable
 $logObject | Get-Member -Name WriteLog # Method allows interacting with the object
-#endregion
 
-#region Types
+# Static members
+[System.IO.Path] | Get-Member -Static
+[System.Math] | Get-Member -Static
+[System.Convert] | Get-Member -Static
+
+# Calling static members with a double colon
+$tempFile = [System.IO.Path]::GetTempFileName() # Creates a temporary file and returns the file name
+[System.Convert]::ToBoolean('false') # Convert values to different types
+[System.Math]::Round(123.4567, 2) # Round to two decimal places
+
+# A special static member is the constructor of a class. The constructor creates a new instance i.e a new object
+[System.Security.AccessControl.FileSystemAccessRule] | Get-Member -Static -Name new
+
+# A shorthand to the method signature uses the double colon
+# this lists the so-called overloads of a method
+[IO.Path]::GetFileNameWithoutExtension
+[System.Security.AccessControl.FileSystemAccessRule]::new
 
 # Basic types
 [bool] # True or False
@@ -123,6 +139,29 @@ Get-WinEvent -LogName Application -MaxEvents '000030' # Integers in Strings are 
 # Type-casting variables to aid conversion
 [string]$NoStringsAttached = 'Value'
 [int]$Only32BitIntegerHere = 42
-[]
+[datetime]$IHaveADate = Get-Date
+
+$NoStringsAttached = Get-Date # Is converted to a string
+$Only32BitIntegerHere = "0000000123" # Gets converted
+$Only32BitIntegerHere = "four" # Throws a conversion error
+$IHaveADate = '2018-01-01' # Conversion possible
+$IHaveADate = '31.01.2018' # Conversion not possible
+$IHaveADate = '01.31.2018' # Conversion possible
+
+# Type-casting expression instead of variables
+$processName = [string](Get-Process -Id $pid)
+$processName # Be careful with type-casting. The ToString() method is used!
+$driveLetters = [char[]](65..90) # Cast the integers 65 - 90 into a character, resulting in the letters A - Z
+
+# Validation preview
+[ValidateNotNullOrEmpty()]$noEmptyStrings = "hello"
+$noEmptyStrings = "" # throws
+$noEmptyStrings = $null # also throws
+
+[ValidateDrive('C')]$logFilePath = 'C:\Logs'
+$logFilePath = 'D:\Logs' # Throws, drive D is not allowed
+
+[ValidateRange(1024,65535)]$port = 7001
+$port = 443 # Throws
 
 #endregion

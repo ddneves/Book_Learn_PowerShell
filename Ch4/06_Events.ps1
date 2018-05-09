@@ -31,7 +31,14 @@ $actionScript = {
     $serviceBefore = $eventargs.NewEvent.PreviousInstance
 
     # Your modified service configuration
-    $serviceAfter = $eventargs.NewEvent.TargetInstance
+    $serviceAfter = if($eventargs.NewEvent.TargetInstance)
+    {
+        $eventargs.NewEvent.TargetInstance
+    }
+    else
+    {
+        $eventargs.NewEvent.SourceInstance
+    }
 
     Compare-Object $serviceBefore $serviceAfter -Property Name,Description,StartMode | Out-Host
 }
@@ -47,7 +54,7 @@ Unregister-Event -SourceIdentifier ServiceModified
 
 # Same, but different...
 Register-CimIndicationEvent -Query "SELECT * FROM CIM_InstModification WITHIN 5 WHERE targetInstance ISA 'WIN32_Service'" `
--SourceIdentifier CimServiceModified -Action $actionScript
+-SourceIdentifier CimServiceModified -Action $actionScript -ComputerName NODE01
 
 # When finished
 Unregister-Event -SourceIdentifier CimServiceModified
@@ -60,4 +67,13 @@ Register-EngineEvent -SourceIdentifier PowerShell.Exiting -SupportEvent -Action 
     Write-Host -ForegroundColor Green -BackgroundColor Black "Bye $env:USERNAME"
     Start-Sleep -Seconds 3
 }
+#endregion
+
+#region Remote events
+Register-CimIndicationEvent -Query "SELECT * FROM CIM_InstModification WITHIN 5 WHERE targetInstance ISA 'WIN32_Service'" `
+-SourceIdentifier CimServiceModified -ComputerName NODE01 -Action $actionScript
+
+# Events created in the remote session are queued and can be
+# collected at the local session
+Get-Event -SourceIdentifier CimServiceModified
 #endregion

@@ -63,21 +63,21 @@ Get-ChildItem |
 #endregion
 
 #region Performance of Foreach-Object vs .ForEach() vs foreach(a in b)
-$input = 1..10
+$inputObjects = 1..10
 
 # Slowest
 $startCmdlet = Get-Date
-$folders = $input | Foreach-Object {'Folder{0:d2}' -f $_}
+$folders = $inputObjects | Foreach-Object {'Folder{0:d2}' -f $_}
 $endCmdlet = Get-Date
 
 # Still slow
 $startLinq = Get-Date
-$folders = $input.ForEach( {'Folder{0:d2}' -f $_})
+$folders = $inputObjects.ForEach( {'Folder{0:d2}' -f $_})
 $endLinq = Get-Date
 
 # Acceptable
 $startConstruct = Get-Date
-$folders = foreach ($i in $input)
+$folders = foreach ($i in $inputObjects)
 {
     'Folder{0:d2}' -f $i
 }

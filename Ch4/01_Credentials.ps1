@@ -26,3 +26,13 @@ $newCredential.GetNetworkCredential().Password
 $cmd = 'cmdkey.exe /add:"TERMSRV/{0}" /user:"{1}" /pass:"{2}"' -f 'SomeHost', $newCredential.UserName, $newCredential.GetNetworkCredential().Password
 Invoke-Expression $cmd | Out-Null
 mstsc.exe "/v:SomeHost"
+
+# Encrypting credentials at rest
+# Add a new self-signed certificate for testing
+New-SelfSignedCertificate -Subject SomeRecipient -KeyUsage KeyEncipherment -CertStoreLocation Cert:\CurrentUser\My -Type DocumentEncryptionCert
+
+# Use the certificate to encrypt a message (public key of recipient required)
+Protect-CmsMessage -to CN=SomeRecipient -Content (Read-Host -AsSecureString -Prompt 'Enter password' | ConvertFrom-SecureString) | Out-File .\EncryptedContent.txt
+
+# Decrypt the message on another system (private key required
+Unprotect-CmsMessage -Content (Get-Content .\EncryptedContent.txt) | ConvertTo-SecureString

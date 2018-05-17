@@ -255,3 +255,26 @@ foreach ($service in (Get-Service))
 
 Write-Log -Message "Script finished" -Path $log.FullName
 #endregion
+
+#region scoping
+
+# Get-Help about_scopes
+$inGlobalScope = 'global'
+$private:NoOneShallSeeMe = 'hidden'
+function ChildOfGlobal
+{
+    # can read outer variables that are not private
+    Write-Host "Outer variable value: $inGlobalScope"
+
+    # Without scope modifier, cannot write to outer scope
+    # What happens: A variable $local:inGlobalScope is created
+    # The output is misleading
+    $inGlobalScope = 'local'
+    Write-Host "Outer variable value: $inGlobalScope"
+    Write-Host "Actually, `$local:inGlobalScope was used: $local:inGlobalScope"
+    Write-Host "Private variable: $private:NoOneShallSeeMe"
+}
+
+ChildOfGlobal
+Write-Host "Outer variable after function: $inGlobalScope"
+#endregion

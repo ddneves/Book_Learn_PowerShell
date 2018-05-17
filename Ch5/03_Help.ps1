@@ -1,5 +1,5 @@
 #region Help content, Help system
-
+read-host
 # No help content since PSv3
 Update-Help # Only the first execution each day is processed
 

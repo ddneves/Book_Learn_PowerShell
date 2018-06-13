@@ -32,11 +32,11 @@
 
 #region arithmetic operators with strings
 
-#add 
+# add 
 "word" + "chain" # "wordchain"
 "word" + 2 # "word2"
 
-#subtract
+# subtract
 "wordchain" - "chain" # ERROR
 
 #divide

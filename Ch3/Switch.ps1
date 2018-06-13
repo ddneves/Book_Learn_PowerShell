@@ -26,3 +26,12 @@ switch (42, 2)
  }
 # "It is the answer of everything."
 # "It is two."
+
+#example using Regex
+switch -Regex ("fourtytwo")
+       {
+           1 {"It is one."; Break}
+           2 {"It is two."; Break}
+           "fo*" {"It is the answer of everything."}
+       }
+# "It is the answer of everything."

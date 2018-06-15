@@ -1,4 +1,3 @@
-
 #Retrieve Apps examples
 Get-AppxPackage | Select-Object Name, PackageFullName
 

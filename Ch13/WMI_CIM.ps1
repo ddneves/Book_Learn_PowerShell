@@ -19,7 +19,7 @@ Cmdlet          Set-CimInstance                                    1.0.0.0    Ci
 #>
 
 #Instance for OS
-$inst = Get-CimInstance Win32_OperatingSystem  
+$inst = Get-CimInstance Win32_OperatingSystem
 
 #Working with service
 Get-CimInstance -ClassName win32_service -Property name, state -Fil "name = 'bits'"

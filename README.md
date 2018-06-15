@@ -1,8 +1,8 @@
-# Book_Learn_PowerShell by David das Neves and Jan-Hendrik Peters
-Material of the book: Learn PowerShell - Fundamentals of PowerShell 6
-
+# Materials of the book: Learn PowerShell Core 6.0
 
 Leverage your skills with Windows PowerShell, PowerShell Core 6 and PowerShell in Azure Cloud Shell to manage all types of servers and Cloud Services efficiently in the DevOps-way.
+
+### Authors: David das Neves and Jan-Hendrik Peters
 
 ## Key Features
 A step-by-step guide with an end-to-end Windows Powershell 6 coverage
@@ -25,13 +25,13 @@ If you are a Windows administrator or a DevOps user who wants to leverage PowerS
 https://www.packtpub.com/networking-and-servers/learn-powershell-core-60
 
 
-# Authors
-## David das Neves
+## Authors
+### David das Neves
 David das Neves is a former software developer, has been working for Microsoft and works now as a Cloud Consultant at Google. In his daily tasks he works primarily with enterprise customers to leverage the power of the Google Cloud Platform and to help them transforming their businesses. Besides his work, he writes books, blog articles, organizes user groups, and speaks at conferences and other events all over the world.
 
 He is also very integrated in the PS community, as he is organizing the PowerShell user groups Germany and Munich and speaks frequently at PowerShell conferences.
 
-## Jan-Hendrik
+### Jan-Hendrik
 Jan-Hendrik is an Automation and DevOps professional by day and a developer for the lab framework AutomatedLab by night.
 
 After working at an international retailer automating distributed POS support systems he started working as a Premier Field Engineer for Microsoft Germany where he helps customers automate their infrastructure on-premises and in the cloud.

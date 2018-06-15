@@ -15,6 +15,17 @@
 #endregion
 
 #region Methods
+
+#Showing all static methods
+[System.Math] | Get-Member -Static -MemberType Methods
+
+#Showing all static properties
+[System.Math] | Get-Member -Static -MemberType Methods
+
+##Showing all static methods and properties
+[System.Math] | Get-Member -Static
+
+
 [Math]::Min
 <#
     OverloadDefinitions

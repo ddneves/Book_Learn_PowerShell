@@ -126,6 +126,7 @@ $instance.toString()
 #Polymorphism
 "string".GetType() 
 "string".GetType() | Select-Object * | Out-GridView
+"string".GetType() | Select-Object * | Get-Member Declared*
 
 ############################################################################
 

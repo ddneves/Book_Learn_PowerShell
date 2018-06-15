@@ -31,7 +31,7 @@ David das Neves is a former software developer, has been working for Microsoft a
 
 He is also very integrated in the PS community, as he is organizing the PowerShell user groups Germany and Munich and speaks frequently at PowerShell conferences.
 
-### Jan-Hendrik
+### Jan-Hendrik Peters
 Jan-Hendrik is an Automation and DevOps professional by day and a developer for the lab framework AutomatedLab by night.
 
 After working at an international retailer automating distributed POS support systems he started working as a Premier Field Engineer for Microsoft Germany where he helps customers automate their infrastructure on-premises and in the cloud.

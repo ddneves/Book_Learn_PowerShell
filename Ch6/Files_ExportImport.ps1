@@ -49,5 +49,8 @@ $data = (Get-Content -Path $exportedProcessesPath -ReadCount 1000)
 #Splitting the lines if parsing
 $data = (Get-Content -Path $exportedProcessesPath -ReadCount 1000).Split([Environment]::NewLine)
 
+#Retrieving data as one large string
+$data = Get-Content -Path $exportedProcessesPath -Raw
+
 #endregion
 

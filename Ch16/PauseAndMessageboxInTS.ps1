@@ -1,0 +1,1 @@
+powershell.exe -command (new-object -ComObject Microsoft.SMS.TsProgressUI).CloseProgressDialog() ; (new-object -ComObject wscript.shell).Popup('Message Box Text Content goes Here, you can make this as detailed as you want.',0,'Message Box Title in Upper Left',0x0 + 0x30) ; Exit 1

@@ -97,3 +97,6 @@ $deployment = @{
 
 # Use your template parameters in the resource group deployment!
 New-AzureRmResourceGroupDeployment @deployment -location 'westeurope' -storageAccountType 'Standard_LRS'
+
+# Clean up
+Remove-AzureRmResourceGroup $resourceGroupName -Force

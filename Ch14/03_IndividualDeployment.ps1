@@ -12,11 +12,11 @@ $container = New-AzureStorageContainer -Name disks -Context $storageContext
 $rnd = (Get-Random -Minimum 1 -Maximum 1000).ToString('0000')
 New-AzureRmVirtualNetwork -Name $resourceGroupName -ResourceGroupName $resourceGroupName -Location $location -AddressPrefix "10.0.0.0/16"    
 Get-AzureRmVirtualNetwork -Name $resourceGroupName -ResourceGroupName $resourceGroupName |
-Add-AzureRmVirtualNetworkSubnetConfig -Name someSubnet -AddressPrefix '10.0.0.0/24' |
-Set-AzureRmVirtualNetwork
+    Add-AzureRmVirtualNetworkSubnetConfig -Name someSubnet -AddressPrefix '10.0.0.0/24' |
+    Set-AzureRmVirtualNetwork
 
 $subnet = Get-AzureRmVirtualNetwork -Name $resourceGroupName -ResourceGroupName $resourceGroupName |
-            Get-AzureRmVirtualNetworkSubnetConfig
+    Get-AzureRmVirtualNetworkSubnetConfig
 
 $vm = New-AzureRmVMConfig -VMName $vmName -VMSize $RoleSize -ErrorAction Stop -WarningAction SilentlyContinue
 $vm = Set-AzureRmVMOperatingSystem -VM $vm -Windows -ComputerName $vmName -Credential $cred -ProvisionVMAgent -EnableAutoUpdate -ErrorAction Stop -WinRMHttp
@@ -37,3 +37,8 @@ $vmParameters = @{
     WarningAction     = 'SilentlyContinue'
 }
 New-AzureRmVM @vmParameters
+
+# Examine your VM, add a public IP, allow WinRM traffic, ...
+
+# Once finished, clean up
+Remove-AzureRmResourceGroup $resourceGroupName -Force

@@ -1,10 +1,9 @@
-$domain = 'MyDomain'
+$domain = 'exampleDomain'
 $username = 'User01'
 
 $sid = (New-Object Security.Principal.NTAccount($domain, $username)).Translate([Security.Principal.SecurityIdentifier]).Value
 
 $sid
-
 
 
 $username = 'Administrator'

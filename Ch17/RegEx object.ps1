@@ -80,8 +80,6 @@ $data
 
 # Regexlib.com
 
-
-
 # CBS.log
 $path = 'c:\windows\logs\cbs\cbs.log'
 $regexString = '(?<Date>\d{4}-\d{2}-\d{2})\s+(?<Time>(\d{2}:)+\d{2}),\s+(?<Type>\w+)\s+(?<Component>\w+)\s+(?<Message>.*)$'

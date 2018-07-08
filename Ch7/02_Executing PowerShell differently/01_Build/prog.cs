@@ -9,7 +9,7 @@ public class Program
     //Constructor
     public static void Main( string[] args )
     {
-        //Loading the executor class and executing it with the first gathhered argument from the command line
+        //Loading the executor class and executing it with the first gathered argument from the command line
         //Example: prog.exe c:\temp\MimiKatz.psm1
         Executor.Execute( args[ 0 ] );
     }

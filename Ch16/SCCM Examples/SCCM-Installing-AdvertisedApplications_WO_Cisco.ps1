@@ -1,4 +1,4 @@
-﻿# Installieren der Applications
+﻿# Installing applications forced
 $sw = Get-CimInstance -Namespace root/ccm/ClientSDK -ClassName CCM_Application | Where-Object {$_.InstallState -eq "NotInstalled" -and $_.UserUIExperience -eq "True"}
 Foreach($sp in $sw){
 If ([string]::IsNullOrEmpty($sp.InstallState))

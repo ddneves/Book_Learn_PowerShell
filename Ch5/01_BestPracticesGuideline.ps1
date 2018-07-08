@@ -113,6 +113,9 @@ $userObject | Set-AdUser -EmployeeNumber $employeeNumber
 
 #region Aliases, parameter names
 
+# Does this look appealing to you? If so, perl might be your choice ;)
+gsv | ? CanStop | spsv -ea SilentlyContinue -wh -pa
+
 # Bad
 gci C:\temp -ea SilentlyContinue
 gsv | ? CanStop
@@ -120,6 +123,40 @@ gsv | ? CanStop
 # Good
 Get-ChildItem -Path C:\temp -ErrorAction SilentlyContinue
 Get-Service | Where-Object -Property CanStop
+
+# Reducing nesting
+function foo
+{
+    param
+    (
+        $Param1
+    )
+
+    # This horrible creation
+    if ($Param1)
+    {
+        if (Test-Path $Param1)
+        {
+            if ((Get-Date).Date -eq '4/20')
+            {
+                # Do things
+                # Hard to maintain deeply nested code
+                $false
+            }
+            else
+            {
+                $true
+            }
+        }
+    }
+
+    # looks better like this simply by inverting statements
+    if (-not $Param1) { return }
+    if (-not (Test-Path -Path $Param1)) { return }
+
+    # No last if statement necessary for simple code block
+    return (-not ((Get-Date).Date -eq '4/20'))
+}
 
 #endregion
 

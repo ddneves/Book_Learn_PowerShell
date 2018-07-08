@@ -1,3 +1,25 @@
+#region JSON vs HashTable
+# Hashtable
+@{
+    PropertyName = 'Value'
+    ListProperty = @(
+        'ListEntry1'
+        'ListEntry2'
+    )
+} | convertto-json -dept 100 | clip
+
+# JSON
+@"
+{
+    "ListProperty":  [
+                         "ListEntry1",
+                         "ListEntry2"
+                     ],
+    "PropertyName":  "Value"
+}
+"@
+#endregion
+
 #region Create the API
 $polarisPath = [System.IO.Path]::GetTempFileName() -replace '\.tmp','\Polaris'
 git clone https://github.com/powershell/polaris $polarisPath

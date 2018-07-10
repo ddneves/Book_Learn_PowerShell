@@ -28,7 +28,7 @@ function UsesPipeline
     {
         # Optional - Will be executed once after all objects have been retrieved from the pipeline.
         # Clean-up tasks are usually placed here
-        Write-Host -ForegroundColor Yellow 'We`re done here...'
+        Write-Host -ForegroundColor Yellow "We're done here..."
         return $pipedObjectList
     }
 }

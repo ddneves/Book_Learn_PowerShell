@@ -22,7 +22,7 @@ Write-Host ('ThrottleLimit 16: {0}s' -f ($endInvoke2 - $startInvoke2).TotalSecon
 
 # Using jobs explicitly
 $start = Get-Date
-$jobs = 1..1000 | ForEach-Object {
+$jobs = 1..50 | ForEach-Object {
     Start-Job -ScriptBlock { Start-Sleep -Seconds 1}
 }
 $jobs | Wait-Job
@@ -30,7 +30,7 @@ $end = Get-Date
 
 $jobs | Remove-Job
 $end - $start # Not THAT parallel
-Write-Host ('It took {0}s to sleep 1000*1s in 1000 jobs' -f ($end - $start).TotalSeconds)
+Write-Host ('It took {0}s to sleep 50*1s in 50 jobs' -f ($end - $start).TotalSeconds)
 #endregion
 
 #region Runspaces

@@ -9,8 +9,8 @@ $password = 'P@ssw0rd' | ConvertTo-SecureString -AsPlainText -Force
 $newCredential = New-Object -TypeName pscredential $userName, $password
 
 $linuxSessionOptions = New-PSSessionOption -SkipCACheck -SkipCNCheck -SkipRevocationCheck
-$sessions = New-PSSession $windowsMachines
-$sessions += New-PSSession $linuxMachines -UseSSL -SessionOption $linuxSessionOptions
+$sessions = @(New-PSSession $windowsMachines -Credential (Get-Credential))
+$sessions += New-PSSession $linuxMachines -UseSSL -SessionOption $linuxSessionOptions -Authentication Basic -Credential (Get-Credential)
 
 Invoke-Command -Session $sessions -ScriptBlock {
     param
@@ -23,7 +23,7 @@ Invoke-Command -Session $sessions -ScriptBlock {
     }
     elseif ($PSVersionTable.PSEdition -eq 'Core' -and $IsLinux)
     {
-        $userCreation = Start-Process -FilePath '/usr/sbin/useradd' -ArgumentList $Credential.UserName -Wait -NoNewWindow -PassThru
+        $userCreation = Start-Process -FilePath '/sbin/useradd' -ArgumentList $Credential.UserName -Wait -NoNewWindow -PassThru
 
         if ($userCreation.ExitCode -ne 0)
         {

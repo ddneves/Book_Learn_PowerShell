@@ -47,7 +47,7 @@ if (-not (Get-Module AutomatedLab -List))
 New-LabDefinition SimpleWebServer -DefaultVirtualizationEngine HyperV
 
 # Add lab machines - make sure that Get-LabAvailableOperatingSystem returns something
-Add-LabMachineDefinition -Name PACKTIIS-Roles WebServer -OperatingSystem 'Windows Server 2016 Datacenter'
+Add-LabMachineDefinition -Name PACKTIIS -Roles WebServer -OperatingSystem 'Windows Server 2016 Datacenter'
 
 Install-Lab
 

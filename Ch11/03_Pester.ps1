@@ -1,3 +1,19 @@
+# Update Pester to the current version to make use of the improvements
+Get-Module -List Pester # Built-in: 3.4.0
+
+# Update PowerShellGet first
+if (-not (Get-Command Install-Module).Parameters.ContainsKey('SkipPublisherCheck'))
+{
+    Update-Module -Name PowerShellGet -Force
+}
+
+# After updating PowerShellGet, make sure to close PowerShell and start a new process
+# We are using the new parameter SkipPublisherCheck since newer versions of Pester are not signed
+Install-Module -Name Pester -Force -SkipPublisherCheck
+
+# Verify
+Get-Module -List Pester
+
 # Excerpt from DSC resource module xActiveDirectory
 Describe "$($Global:DSCResourceName)\Get-TargetResource" {
 

@@ -13,7 +13,7 @@ function Convert-PPTXtoPDF
   (
     # Folder or File
     [Parameter(Mandatory = $true,
-        ValueFromPipelineByPropertyName = $true,
+        ValueFromPipelineByPropertyName = $false,
     Position = 0)]
     $Path  
   )

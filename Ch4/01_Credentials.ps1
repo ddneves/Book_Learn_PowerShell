@@ -35,4 +35,4 @@ New-SelfSignedCertificate -Subject SomeRecipient -KeyUsage KeyEncipherment -Cert
 Protect-CmsMessage -to CN=SomeRecipient -Content (Read-Host -AsSecureString -Prompt 'Enter password' | ConvertFrom-SecureString) | Out-File .\EncryptedContent.txt
 
 # Decrypt the message on another system (private key required
-Unprotect-CmsMessage -Content (Get-Content .\EncryptedContent.txt) | ConvertTo-SecureString
+Unprotect-CmsMessage -Content (Get-Content .\EncryptedContent.txt -Raw) | ConvertTo-SecureString

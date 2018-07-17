@@ -13,12 +13,12 @@ function New-ConfigDbEntry
 
     $query = "INSERT INTO {0} VALUES (N'{1}, {2:yyyyMMdd}'" -f $Database, $ComputerName, (Get-Date)
 
-    Invoke-SqlCommand -ServerInstance $ServerInstance -Database $Database -Query $query
+    Invoke-SqlCmd -ServerInstance $ServerInstance -Database $Database -Query $query
 }
 
 # Unit tests to test your function as a black box
 Describe 'Config DB module' {
-    function Invoke-SqlCommand {} # Empty function declaration if SQLPS is not installed
+    function Invoke-SqlCmd {} # Empty function declaration if SqlServer module is not installed
     Context 'New entry is added' {
         $testParameters = @{
             ServerInstance = 'somemachine\CMDB'
@@ -27,14 +27,14 @@ Describe 'Config DB module' {
         $testObject = 'SomeMachineName'
 
         # Mock external cmdlet with proper return value
-        Mock -CommandName Invoke-SqlCommand
+        Mock -CommandName Invoke-SqlCmd
 
         It 'Should not throw' {
             {New-ConfigDbEntry @testParameters -ComputerName $testObject} | Should -Not -Throw
         }
 
-        It 'Should have called Invoke-SqlCommand once' {
-            Assert-MockCalled -CommandName Invoke-SqlCommand -Times 1 -Exactly
+        It 'Should have called Invoke-SqlCmd once' {
+            Assert-MockCalled -CommandName Invoke-SqlCmd -Times 1 -Exactly
         }
     }
 }
@@ -46,6 +46,6 @@ Describe 'Config DB integration' {
         $database = 'testdb'
         $entry = 'SomeMachineName'
         
-        (Invoke-SqlCommand -ServerInstance $instance -Database $database -Query "SELECT ComputerName from $testdb").ComputerName | Should -Contain $entry
+        (Invoke-SqlCmd -ServerInstance $instance -Database $database -Query "SELECT ComputerName from $testdb").ComputerName | Should -Contain $entry
     }
 }

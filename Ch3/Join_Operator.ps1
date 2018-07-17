@@ -8,7 +8,7 @@ $strings = 'P', 'ower', 'Shell'
 
 ##
 
-# joining with a specified delimeter
+# joining with a specified delimiter
 ('This', 'is', 'PowerShell.') -join ' ' # This is PowerShell.
 'This', 'is', 'PowerShell.' -join ' ' # This is PowerShell.
 'ID', 'USER', 'NAME' -join '|' # ID|USER|NAME

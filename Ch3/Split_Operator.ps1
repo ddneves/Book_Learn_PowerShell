@@ -8,10 +8,10 @@
 
 ##
 
-# using your own delimiter - preserving delimeter
+# using your own delimiter - preserving delimiter
 'ID:Name' -split '(:)' # 'ID', ':' ,'Name'
 
-# using your own delimiter - preserving delimeter - omitting specific characters
+# using your own delimiter - preserving delimiter - omitting specific characters
 'ID/:/Name' -split '/(:)/' # 'ID', ':' ,'Name'
 
 ##

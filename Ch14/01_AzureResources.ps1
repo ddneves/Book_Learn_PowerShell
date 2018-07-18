@@ -4,7 +4,7 @@
 Install-Module AzureRm -Force
 
 # Before you can do anything, you need to login
-Add-AzureRmAccount -Subscription 'JHPaaS'
+Connect-AzureRmAccount -Subscription 'JHPaaS'
 
 #region Resources
 # Listing your subscription's resources

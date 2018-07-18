@@ -5,8 +5,8 @@
 [Convert]::ToInt32(10000000,2) # 128
 
 # 132 and 127 in binary
-[Convert]::ToString(132,2) # 10000100
-[Convert]::ToString(127,2) # 01111111
+$132inbits = [Convert]::ToString(132,2) # 10000100
+$127inbits = [Convert]::ToString(127,2) # 01111111
 
 # -band
 # we operate the band operator between 127 and 132
